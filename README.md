@@ -10,12 +10,12 @@
 
 ## Overview
 
-This app allows the user to search a potential city they want to travel to and date(s) they will be ther . Upon searching they will be shown events collected from various APIs about shows, meetups etc.
+This app allows the user to search a potential city they want to travel to and date(s) they will be there . Upon searching they will be shown events collected from various APIs about shows, meetups etc.
 
 ## Getting Started
 
 ## Architecture
-Site was desiged using React and React-Bootstrap on the frontend and node on the server side. The site is divided into various components and modules per standard industry practices.
+Site was desiged using React and React-Bootstrap on the frontend as well as node , express on the server side. The site is divided into various components and modules per standard industry practices.
 
 ## Credit and Collaborations
 
