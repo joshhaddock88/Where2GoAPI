@@ -28,12 +28,15 @@ const ticketHandler = require(`./modules/ticketHandler.js`);
 
 //-----------------------------CRUD-----------------------------
 
+
 app.get('/', (req, res) => {
   res.send('hello');
 })
-
+//------------GET FROM APIS
+app.get('/breweriesapi', breweryHandler.getBreweries);
+app.get('/ticketsapi', ticketHandler.getTickets);
 //----------RENDER FROM DATABASE
-app.get('/breweriesapi', breweryHandler.getBreweries)
+
 app.get('/breweries', breweryHandler.findBreweryByEmail);
 // app.get('/meetups', meetupHandler);
 // app.get('/tickets', ticketHandler);

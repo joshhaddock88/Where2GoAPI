@@ -30,7 +30,7 @@ class Breweries {
 
 getBreweries = async (req, res) => {
   const city = req.query.city;
-  const url = `https://api.openbrewerydb.org/breweries?by_city=${city}`;
+  const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_city=${city}`;
 
   try {
     const breweryList = await axios.get(url);
