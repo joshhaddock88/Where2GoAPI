@@ -23,39 +23,44 @@ db.once('open', function () {
 
 //---------------------------API Handlers-----------------------
 const breweryHandler = require(`./modules/breweryHandler.js`);
-const meetupHandler = require(`./modules/meetupHandler.js`);
+// const meetupHandler = require(`./modules/meetupHandler.js`);
 const ticketHandler = require(`./modules/ticketHandler.js`);
 
 //-----------------------------CRUD-----------------------------
 
+
 app.get('/', (req, res) => {
   res.send('hello');
 })
-
+//------------GET FROM APIS
+app.get('/breweriesapi', breweryHandler.getBreweries);
+app.get('/ticketsapi', ticketHandler.getTickets);
 //----------RENDER FROM DATABASE
-app.get('/breweriesapi', breweryHandler.getBreweries)
+
 app.get('/breweries', breweryHandler.findBreweryByEmail);
 // app.get('/meetups', meetupHandler);
-// app.get('/tickets', ticketHandler);
+app.get('/tickets', ticketHandler.findTicketByEmail);
 
 //----------ADD TO DATABASE
 app.post('/breweries', breweryHandler.addBrewery);
+app.post('/tickets', ticketHandler.addTicket);
 
 
 //----------DELETE FROM DATABASE
 app.delete('/breweries/:id', breweryHandler.deleteBrewery);
+app.delete('/tickets', ticketHandler.deleteTicket);
 
-//-------------THIS IS FOR LATER USE-----------------
-// app.get('/test-login', (req, res) => {
-//   const token = req.headers.authorization.split(' ')[1];
-//   jwt.verify(token, getKey, {}, function(err, user) {
-//     if(err) {
-//       res.status(500).send('invalid token');
-//     } else {
-//       res.send(user);
-//     }
-//   });
-// });
+//-------------TOKEN CHECK-----------------
+app.get('/test-login', (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  jwt.verify(token, getKey, {}, function(err, user) {
+    if(err) {
+      res.status(500).send('invalid token');
+    } else {
+      res.send(user);
+    }
+  });
+});
 
 
 //-----------------------------Final Port Check----------------
