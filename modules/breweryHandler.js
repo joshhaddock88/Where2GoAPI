@@ -30,7 +30,7 @@ class Breweries {
 
 getBreweries = async (req, res) => {
   const city = req.query.city;
-  const url = `https://api.openbrewerydb.org/breweries?by_city=${city}`;
+  const url = `https://api.openbrewerydb.org/breweries?per_page=50&by_city=${city}`;
 
   try {
     const breweryList = await axios.get(url);
@@ -44,28 +44,28 @@ getBreweries = async (req, res) => {
 //---------------------CRUD------------------------------------
 // FIND BREWERY BY EMAIL
 let findBreweryByEmail = (req,res) => {
-  // const token = req.headers.authorization.split(' ')[1];
-  // jwt.verify(token, getKey, {}, function(err, user) {
-  //   if(err) {
-  //     res.status(500).send('Invalid token');
-  //   } else {
+  const token = req.headers.authorization.split(' ')[1];
+  jwt.verify(token, getKey, {}, function(err, user) {
+    if(err) {
+      res.status(500).send('Invalid token');
+    } else {
       let userEmail = user.email;
       Brewery.find({email: userEmail}, (err, breweries) => {
         console.log(breweries);
         res.send(breweries);
       });
     }
-//   });
-// };
+  });
+};
 
 // ADD BREWERY
 let addBrewery = (req, res) => {
-  // console.log('Breweries! Yay!');
-  // const token = req.headers.authorization.split(' ')[1];
-  // jwt.verify(token, getKey, {}, function(err, user) {
-  //   if(err) {
-  //     res.status(500).send('Invalid token');
-  //   } else {
+  console.log('Breweries! Yay!');
+  const token = req.headers.authorization.split(' ')[1];
+  jwt.verify(token, getKey, {}, function(err, user) {
+    if(err) {
+      res.status(500).send('Invalid token');
+    } else {
       const newBrewery = new Brewery ({
         name: req.body.name,
         street: req.body.street,
@@ -76,31 +76,27 @@ let addBrewery = (req, res) => {
         res.send(savedBreweryData);
       });
     }
-//   });
-// };
+  });
+};
 
 // DELETE BREWERY
 let deleteBrewery = (req, res) => {
-  // const token = req.headers.authorization.split(' ')[1];
-  // jwt.verify(token, getKey, {}, function(err, user) {
-  //   if(err) {
-  //     res.status(500).send('invalid token');
-  //   } else {
+  const token = req.headers.authorization.split(' ')[1];
+  jwt.verify(token, getKey, {}, function(err, user) {
+    if(err) {
+      res.status(500).send('invalid token');
+    } else {
       let breweryId = req.params.id;
       console.log(breweryId);
 
-      Brewery.deleteOne({_id: breweryId})
-      //                     ^Add  email: user.email later
+      Brewery.deleteOne({_id: ticketId, email: user.email})
         .then(deletedBreweryData => {
           console.log(deletedBreweryData);
           res.send('Successfully deleted Brewery');
         });
     }
-  // });
-// }
-
-
-
+  });
+}
 
 //-----------------------EXPORT MODULES
 module.exports = {
