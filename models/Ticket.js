@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const brewerySchema = new mongoose.Schema({
+const ticketSchema = new mongoose.Schema({
     name: String,
-    street: String,
-    phone: String
+    venue: String,
+    startDate: String,
+    startTime: String,
 })
 
-const Ticket = mongoose.model('Ticket', brewerySchema);
+const Ticket = mongoose.model('Ticket', ticketSchema);
 
 module.exports = Ticket;
