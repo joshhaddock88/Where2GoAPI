@@ -70,10 +70,12 @@ let addBrewery = (req, res) => {
         name: req.body.name,
         street: req.body.street,
         website_url: req.body.website_url,
-        phone: req.body.phone
+        phone: req.body.phone,
+        email: user.email
       });
       newBrewery.save((err, savedBreweryData) => {
         res.send(savedBreweryData);
+        console.log(savedBreweryData);
       });
     }
   });
@@ -89,7 +91,7 @@ let deleteBrewery = (req, res) => {
       let breweryId = req.params.id;
       console.log(breweryId);
 
-      Brewery.deleteOne({_id: ticketId, email: user.email})
+      Brewery.deleteOne({_id: breweryId, email: user.email})
         .then(deletedBreweryData => {
           console.log(deletedBreweryData);
           res.send('Successfully deleted Brewery');

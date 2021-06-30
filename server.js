@@ -48,7 +48,7 @@ app.post('/tickets', ticketHandler.addTicket);
 
 //----------DELETE FROM DATABASE
 app.delete('/breweries/:id', breweryHandler.deleteBrewery);
-app.delete('/tickets', ticketHandler.deleteTicket);
+app.delete('/tickets/:id', ticketHandler.deleteTicket);
 
 //-------------TOKEN CHECK-----------------
 app.get('/test-login', (req, res) => {
