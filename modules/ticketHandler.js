@@ -33,8 +33,10 @@ class Tickets{
 
 getTickets = async (req, res) => {
   const city = req.query.city
-  const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${city}&apikey=${KEY}`;
+  const date = req.query.date
+  const url = `https://app.ticketmaster.com/discovery/v2/events.json?city=${city}&startDateTime=${date}T00:00:00Z&apikey=${KEY}`;
   console.log(url);
+  // 
 
   try{
     const ticketList = await axios.get(url);
@@ -74,7 +76,8 @@ let addTicket = (req, res) => {
         name: req.body.name,
         venue: req.body.venue,
         startDate: req.body.startDate,
-        startTime: req.body.startTime
+        startTime: req.body.startTime,
+        email: user.email
       });
       newTicket.save((err, savedTicketData) => {
         res.send(savedTicketData);

@@ -5,6 +5,7 @@ const ticketSchema = new mongoose.Schema({
     venue: String,
     startDate: String,
     startTime: String,
+    email: String,
 })
 
 const Ticket = mongoose.model('Ticket', ticketSchema);

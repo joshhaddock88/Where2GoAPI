@@ -70,7 +70,8 @@ let addBrewery = (req, res) => {
         name: req.body.name,
         street: req.body.street,
         website_url: req.body.website_url,
-        phone: req.body.phone
+        phone: req.body.phone,
+        email: user.email
       });
       newBrewery.save((err, savedBreweryData) => {
         res.send(savedBreweryData);
