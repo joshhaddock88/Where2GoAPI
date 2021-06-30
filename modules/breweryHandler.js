@@ -91,7 +91,7 @@ let deleteBrewery = (req, res) => {
       let breweryId = req.params.id;
       console.log(breweryId);
 
-      Brewery.deleteOne({_id: ticketId, email: user.email})
+      Brewery.deleteOne({_id: breweryId, email: user.email})
         .then(deletedBreweryData => {
           console.log(deletedBreweryData);
           res.send('Successfully deleted Brewery');
