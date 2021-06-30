@@ -78,6 +78,7 @@ let addTicket = (req, res) => {
       });
       newTicket.save((err, savedTicketData) => {
         res.send(savedTicketData);
+        console.log(savedTicketData);
       });
     }
   });
