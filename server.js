@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 //---------------------MONGO Database-----------------------
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 const db = mongoose.connection;
@@ -48,7 +48,7 @@ app.post('/tickets', ticketHandler.addTicket);
 
 //----------DELETE FROM DATABASE
 app.delete('/breweries/:id', breweryHandler.deleteBrewery);
-app.delete('/tickets', ticketHandler.deleteTicket);
+app.delete('/tickets/:id', ticketHandler.deleteTicket);
 
 //-------------TOKEN CHECK-----------------
 app.get('/test-login', (req, res) => {

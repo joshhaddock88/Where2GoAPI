@@ -74,6 +74,7 @@ let addBrewery = (req, res) => {
       });
       newBrewery.save((err, savedBreweryData) => {
         res.send(savedBreweryData);
+        console.log(savedBreweryData);
       });
     }
   });
