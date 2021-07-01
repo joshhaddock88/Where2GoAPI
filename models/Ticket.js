@@ -5,6 +5,7 @@ const ticketSchema = new mongoose.Schema({
     venue: String,
     startDate: String,
     startTime: String,
+    url: String,
     email: String,
 })
 
