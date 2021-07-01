@@ -27,6 +27,7 @@ class Tickets{
     this.venue = ticketObject._embedded.venues[0].name;
     this.startDate = ticketObject.dates.start.localDate;
     this.startTime = ticketObject.dates.start.localTime;
+    this.url = ticketObject.url;
     
   }
 }
@@ -77,6 +78,7 @@ let addTicket = (req, res) => {
         venue: req.body.venue,
         startDate: req.body.startDate,
         startTime: req.body.startTime,
+        url: req.body.url, 
         email: user.email
       });
       newTicket.save((err, savedTicketData) => {
