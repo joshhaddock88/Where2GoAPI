@@ -25,7 +25,7 @@ class Rests {
   constructor (restObject) {
     this.name = restObject.name;
     this.rating = restObject.rating;
-    this.location = restObject.location.display_address;
+    this.location = restObject.location.display_address.join(", ");
     this.phone = restObject.display_phone;
     this.url = restObject.url;
   }
@@ -83,6 +83,9 @@ let addRest = (req, res) => {
         email: user.email
       });
       newRest.save((err, savedRestData) => {
+        if(err){
+          console.log(err)
+        }
         res.send(savedRestData);
         console.log(savedRestData);
       });
