@@ -23,8 +23,8 @@ db.once('open', function () {
 
 //---------------------------API Handlers-----------------------
 const breweryHandler = require(`./modules/breweryHandler.js`);
-// const meetupHandler = require(`./modules/meetupHandler.js`);
 const ticketHandler = require(`./modules/ticketHandler.js`);
+const restHandler = require(`./modules/restHandler.js`);
 
 //-----------------------------CRUD-----------------------------
 
@@ -35,20 +35,22 @@ app.get('/', (req, res) => {
 //------------GET FROM APIS
 app.get('/breweriesapi', breweryHandler.getBreweries);
 app.get('/ticketsapi', ticketHandler.getTickets);
-//----------RENDER FROM DATABASE
+app.get('/restsapi', restHandler.getRests)
 
+//----------RENDER FROM DATABASE
 app.get('/breweries', breweryHandler.findBreweryByEmail);
-// app.get('/meetups', meetupHandler);
 app.get('/tickets', ticketHandler.findTicketByEmail);
+app.get('/rests', restHandler.findRestByEmail);
 
 //----------ADD TO DATABASE
 app.post('/breweries', breweryHandler.addBrewery);
 app.post('/tickets', ticketHandler.addTicket);
-
+app.post('/rests', restHandler.addRest);
 
 //----------DELETE FROM DATABASE
 app.delete('/breweries/:id', breweryHandler.deleteBrewery);
 app.delete('/tickets/:id', ticketHandler.deleteTicket);
+app.delete('/rests/:id', restHandler.deleteRest);
 
 //-------------TOKEN CHECK-----------------
 app.get('/test-login', (req, res) => {
