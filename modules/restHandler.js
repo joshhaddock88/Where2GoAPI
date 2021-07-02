@@ -32,8 +32,9 @@ class Rests {
 }
 
 getRests = async (req, res) => {
-  const city = req.query.city;
+  const city = req.query.location;
   const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
+  console.log(url);
 
   try {
     const restList = await axios.get (url, {
